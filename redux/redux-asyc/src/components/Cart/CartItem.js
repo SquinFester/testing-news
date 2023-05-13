@@ -1,6 +1,11 @@
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../../store/cartContentSlice";
+
 function CartItems({ product }) {
+  const dispatch = useDispatch();
+
   const divClass = "flex flex-row justify-between ";
-  const headingClass = "text-xl";
+  const headingClass = "text-xl font-semibold";
   const buttonClass =
     "w-10 border-solid border border-gray-500 hover:bg-gray-900 focus:outline-gray-500 font-sm px-3";
 
@@ -12,7 +17,7 @@ function CartItems({ product }) {
           <h1 className={`${headingClass} leading-none`}>
             ${(product.price * product.quantity).toFixed(2)}
           </h1>
-          <i className="text-sm font-normal leading-none">
+          <i className="text-sm font-normal leading-none ">
             (${product.price.toFixed(2)}/item)
           </i>
         </div>
@@ -23,8 +28,18 @@ function CartItems({ product }) {
           {product.quantity}
         </h1>
         <div className="flex flex-row gap-2">
-          <button className={buttonClass}>-</button>
-          <button className={buttonClass}>+</button>
+          <button
+            className={buttonClass}
+            onClick={() => dispatch(removeFromCart(product))}
+          >
+            -
+          </button>
+          <button
+            className={buttonClass}
+            onClick={() => dispatch(addToCart(product))}
+          >
+            +
+          </button>
         </div>
       </div>
     </div>

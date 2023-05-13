@@ -5,6 +5,7 @@ const products = [
     id: "1",
     name: "Test Item",
     price: 6,
+    price: 6,
     description: "This is a first test item for the shop.",
   },
 ];
