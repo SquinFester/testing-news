@@ -1,10 +1,18 @@
+import { Fragment } from "react";
+
 import Header from "./components/Layout/Header";
+import Cart from "./components/Cart/Cart";
+import Shop from "./components/Shop/Shop";
 
 function App() {
   return (
-    <main className="h-screen w-screen bg-zinc-800">
+    <Fragment>
       <Header />
-    </main>
+      <main className="h-screen bg-[#333] py-5">
+        <Cart />
+        <Shop />
+      </main>
+    </Fragment>
   );
 }
 
