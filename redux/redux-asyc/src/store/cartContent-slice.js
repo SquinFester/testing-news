@@ -56,9 +56,7 @@ export const cartContent = createSlice({
     builder
       .addCase(fetchCartContent.fulfilled, (state, action) => {
         if (action.payload.items) {
-          state.items = action.payload.items;
-          state.totalPrice = action.payload.totalPrice;
-          state.totalQuantity = action.payload.totalQuantity;
+          return action.payload;
         }
       })
       .addCase(fetchCartContent.rejected, (state, action) => {
