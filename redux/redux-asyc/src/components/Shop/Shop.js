@@ -5,8 +5,19 @@ const products = [
     id: "1",
     name: "Test Item",
     price: 6,
-    price: 6,
     description: "This is a first test item for the shop.",
+  },
+  {
+    id: "2",
+    name: "Test Item2",
+    price: 5,
+    description: "This is a second test item for the shop.",
+  },
+  {
+    id: "3",
+    name: "Test Item3",
+    price: 7,
+    description: "This is a third test item for the shop.",
   },
 ];
 

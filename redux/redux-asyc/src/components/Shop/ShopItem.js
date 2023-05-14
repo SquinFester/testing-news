@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/cartContentSlice";
+import { addToCart } from "../../store/cartContent-slice";
 
 function ShopItem({ product }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 border-b border-solid border-zinc-500 py-3">
       <div className="flex items-center justify-between text-xl font-semibold">
         <h2>{product.name}</h2>
         <h2> ${product.price.toFixed(2)}</h2>
