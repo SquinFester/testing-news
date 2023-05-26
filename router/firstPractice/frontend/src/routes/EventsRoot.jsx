@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
+import EventNav from "../components/EventNav";
 
 const EventsRoot = () => {
   return (
-    <section className="mx-auto w-1/2 text-green-500">
+    <>
+      <EventNav />
       <Outlet />
-    </section>
+    </>
   );
 };
 

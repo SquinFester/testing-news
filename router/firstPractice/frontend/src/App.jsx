@@ -9,11 +9,13 @@ import EventDetailPage, {
 import NewEventPage from "./routes/NewEventPage";
 import EditEventPage from "./routes/EditEventPage";
 import EventsRoot from "./routes/EventsRoot";
+import Error from "./routes/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
