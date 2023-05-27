@@ -3,6 +3,6 @@ const userName = "Bartosz";
 console.log(userName);
 let a = 12;
 let b = 6;
-let c = 2;
+let c = 3;
 console.log(a / b);
 console.log(c * b);
