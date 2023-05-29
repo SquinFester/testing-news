@@ -1,10 +1,59 @@
-const userName: string = "Bartosz";
+interface Assignment {
+  studentId: string;
+  title: string;
+  grade: number;
+  verified?: boolean;
+}
 
-console.log(userName);
+const updateAssignment = (
+  assign: Assignment,
+  propsToUpdate: Partial<Assignment>
+): Assignment => {
+  return { ...assign, ...propsToUpdate };
+};
 
-let a: number = 12;
-let b: number = 6;
-let c: number = 3;
+console.log(
+  updateAssignment(
+    {
+      studentId: "a",
+      title: "a",
+      grade: 20,
+    },
+    { grade: 10 }
+  )
+);
 
-console.log(a / b);
-console.log(c * b);
+const a = <T extends Assignment, K extends keyof T>(b: T, c: K): T[K] => {
+  return b[c];
+};
+
+console.log(
+  a(
+    {
+      studentId: "a",
+      title: "a",
+      grade: 20,
+    },
+    "grade"
+  )
+);
+
+const recordAssignment = (assign: Required<Assignment>): Assignment => {
+  return assign;
+};
+
+console.log(
+  recordAssignment({
+    studentId: "a",
+    title: "a",
+    grade: 20,
+    verified: false,
+  })
+);
+
+type AssignResult = Pick<Assignment, "grade" | "studentId">;
+
+const b: AssignResult = {
+  grade: 20,
+  studentId: "a",
+};

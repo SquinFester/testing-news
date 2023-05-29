@@ -1,8 +1,30 @@
 "use strict";
-const userName = "Bartosz";
-console.log(userName);
-let a = 12;
-let b = 6;
-let c = 3;
-console.log(a / b);
-console.log(c * b);
+const updateAssignment = (assign, propsToUpdate) => {
+    return Object.assign(Object.assign({}, assign), propsToUpdate);
+};
+console.log(updateAssignment({
+    studentId: "a",
+    title: "a",
+    grade: 20,
+}, { grade: 10 }));
+const a = (b, c) => {
+    return b[c];
+};
+console.log(a({
+    studentId: "a",
+    title: "a",
+    grade: 20,
+}, "grade"));
+const recordAssignment = (assign) => {
+    return assign;
+};
+console.log(recordAssignment({
+    studentId: "a",
+    title: "a",
+    grade: 20,
+    verified: false,
+}));
+const b = {
+    grade: 20,
+    studentId: "a",
+};
