@@ -2,14 +2,13 @@ import { ReactNode } from "react";
 
 interface ListProps<T> {
   items: T[];
-  render: (item: T) => ReactNode;
 }
 
-const List = <T,>({ items, render }: ListProps<T>) => {
+const List = <T,>({ items }: ListProps<T>) => {
   return (
     <ul>
       {items.map((item, i) => (
-        <li key={i}>{render(item)}</li>
+        <li key={i}>{item as string}</li>
       ))}
     </ul>
   );
