@@ -7,4 +7,4 @@ let b: number = 6;
 let c: number = 3;
 
 console.log(a / b);
-console.log(c * b);
+console.log(c + b);
