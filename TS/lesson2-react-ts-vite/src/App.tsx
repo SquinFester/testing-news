@@ -10,7 +10,7 @@ function App() {
   const items: string[] = ["Item1", "Item2", "Item3"];
 
   return (
-    <main className="text-white grid justify-center">
+    <main className="text-white grid ">
       <Heading title={"first title"} />
       <Section>
         <Counter setCount={setCount}>Count is {count}</Counter>
