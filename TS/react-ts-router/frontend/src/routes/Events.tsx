@@ -19,7 +19,7 @@ const Events = () => {
   return (
     <>
       {events.map((event) => (
-        <EventItem key={event.id} event={event} />
+        <EventItem key={event.id} {...event} />
       ))}
     </>
   );
