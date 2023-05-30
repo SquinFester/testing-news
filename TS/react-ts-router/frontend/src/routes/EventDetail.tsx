@@ -1,8 +1,13 @@
 import { Link, useRouteLoaderData } from "react-router-dom";
+import { Event } from "./Events";
+
+export type FetchedEvent = {
+  event: Event;
+};
 
 const EventDetail = () => {
-  const data = useRouteLoaderData("event-detail");
-  console.log(data);
+  const data = useRouteLoaderData("event-detail") as FetchedEvent;
+  const event = data.event;
 
   return (
     <div>

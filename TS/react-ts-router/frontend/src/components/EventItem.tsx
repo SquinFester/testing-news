@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 import { Event } from "../routes/Events";
 
 const EventItem = ({ id, title, description, date, image }: Event) => {
   return (
-    <div>
+    <Link to={id}>
       {description}
       {id}
-    </div>
+    </Link>
   );
 };
 

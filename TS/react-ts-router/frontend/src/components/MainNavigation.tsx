@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 
-export interface Page {
+export type Page = {
   id: number;
   name: string;
   path: string;
-}
+};
 
 const PAGES: Page[] = [
   {

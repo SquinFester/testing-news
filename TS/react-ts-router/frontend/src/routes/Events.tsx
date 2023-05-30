@@ -1,16 +1,16 @@
 import { useLoaderData } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
-export interface Event {
+export type Event = {
   id: string;
   title: string;
   description: string;
   date: string;
   image: string;
-}
-interface FetchedData {
+};
+type FetchedData = {
   events: Event[];
-}
+};
 
 const Events = () => {
   const data = useLoaderData() as FetchedData;
