@@ -20,14 +20,23 @@ const PAGES: Page[] = [
 ];
 
 const MainNavigation = () => {
+  const navLink = "hover:text-yellow-300";
+
   return (
-    <header>
-      <nav>
-        <ul>
+    <header className="bg-zinc-800">
+      <nav className="h-12 w-2/3 mx-auto flex items-center">
+        <ul className="flex gap-5 w-full">
           {PAGES.map((page) => (
-            <NavLink to={page.path} key={page.id}>
-              {page.name}
-            </NavLink>
+            <li key={page.id}>
+              <NavLink
+                to={page.path}
+                className={({ isActive }) =>
+                  isActive ? "text-yellow-200 underline" : navLink
+                }
+              >
+                {page.name}
+              </NavLink>
+            </li>
           ))}
         </ul>
       </nav>
