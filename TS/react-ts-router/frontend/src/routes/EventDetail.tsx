@@ -1,13 +1,18 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 
 const EventDetail = () => {
-  const { eventID } = useParams();
+  const data = useRouteLoaderData("event-detail");
+  console.log(data);
 
   return (
     <div>
-      EventDetail --- {eventID} <Link to={"edit"}>Edit</Link>
+      EventDetail --- <Link to={"edit"}>Edit</Link>
     </div>
   );
 };
 
 export default EventDetail;
+
+export const loader = async ({ params }: any) => {
+  return await fetch(`http://localhost:8080/events/${params.eventID}`);
+};

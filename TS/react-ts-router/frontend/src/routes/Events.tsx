@@ -28,5 +28,5 @@ const Events = () => {
 export default Events;
 
 export const loader = async () => {
-  return fetch("http://localhost:8080/events");
+  return await fetch("http://localhost:8080/events");
 };
