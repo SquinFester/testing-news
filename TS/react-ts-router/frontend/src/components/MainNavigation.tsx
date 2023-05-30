@@ -25,7 +25,9 @@ const MainNavigation = () => {
       <nav>
         <ul>
           {PAGES.map((page) => (
-            <NavLink to={page.path}>{page.name}</NavLink>
+            <NavLink to={page.path} key={page.id}>
+              {page.name}
+            </NavLink>
           ))}
         </ul>
       </nav>

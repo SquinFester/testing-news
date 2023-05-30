@@ -20,7 +20,9 @@ const EventsNavigation = () => {
     <nav>
       <ul>
         {LINKS.map((link) => (
-          <NavLink to={link.path}>{link.name}</NavLink>
+          <NavLink to={link.path} key={link.id}>
+            {link.name}
+          </NavLink>
         ))}
       </ul>
     </nav>

@@ -1,17 +1,32 @@
 import { useLoaderData } from "react-router-dom";
+import EventItem from "../components/EventItem";
+
+export interface Event {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+}
+interface FetchedData {
+  events: Event[];
+}
 
 const Events = () => {
-  const events = useLoaderData();
-  console.log(events);
+  const data = useLoaderData() as FetchedData;
+  const events = data.events;
 
-  return <div>Events</div>;
+  return (
+    <>
+      {events.map((event) => (
+        <EventItem key={event.id} event={event} />
+      ))}
+    </>
+  );
 };
 
 export default Events;
 
 export const loader = async () => {
-  try {
-    const response = await fetch("http://localhost:8080/events");
-    return response;
-  } catch (error) {}
+  return fetch("http://localhost:8080/events");
 };
