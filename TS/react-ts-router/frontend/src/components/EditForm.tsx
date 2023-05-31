@@ -1,4 +1,4 @@
-import { useRouteLoaderData } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 
 import { Event } from "../routes/Events";
 import { FetchedEvent } from "../routes/EventDetail";
@@ -51,6 +51,20 @@ const EditForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
+        <label htmlFor="date" className="text-xl font-medium">
+          Date
+        </label>
+        <input
+          type="date"
+          id="date"
+          className="text-black rounded-lg p-1"
+          defaultValue={event.date}
+          {...register("date", { required: true })}
+        />
+        {errors.date && <span>Date is required</span>}
+      </div>
+
+      <div className="flex flex-col gap-2">
         <label htmlFor="description" className="text-xl font-medium">
           Description
         </label>
@@ -62,12 +76,17 @@ const EditForm = () => {
         />
         {errors.title && <span>Description is required</span>}
       </div>
-      <button
-        type="submit"
-        className="bg-yellow-200 text-black w-1/2 mx-auto py-1 rounded-md mt-3 shadow-md font-medium hover:bg-yellow-300 hover:text-neutral-500 transition "
-      >
-        Send
-      </button>
+      <div className="mt-4 flex gap-2 justify-end">
+        <button className="w-20 py-1 rounded-md bg-neutral-700 shadow-md">
+          <Link to="..">Cancel</Link>
+        </button>
+        <button
+          type="submit"
+          className="w-20 py-1 rounded-md bg-gray-500  shadow-md"
+        >
+          Save
+        </button>
+      </div>
     </form>
   );
 };
