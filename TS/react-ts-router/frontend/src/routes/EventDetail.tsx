@@ -11,7 +11,7 @@ const EventDetail = () => {
 
   return (
     <div>
-      EventDetail --- <Link to={"edit"}>Edit</Link>
+      EventDetail {event.id}--- <Link to={"edit"}>Edit</Link>
     </div>
   );
 };

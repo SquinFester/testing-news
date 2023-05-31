@@ -17,11 +17,11 @@ const Events = () => {
   const events = data.events;
 
   return (
-    <>
+    <section className="flex flex-col gap-5">
       {events.map((event) => (
         <EventItem key={event.id} {...event} />
       ))}
-    </>
+    </section>
   );
 };
 

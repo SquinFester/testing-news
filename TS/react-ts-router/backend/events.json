@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"sad312","image":"https://www.argentum-event.pl/wp-content/uploads/2022/04/alicja-w-krainie-czarow013-1024x683.jpg","date":"2023-05-12","description":"asdasda","id":"05b00374-c04b-439e-8331-7c29be35a178"},{"title":"wer","image":"https://www.argentum-event.pl/wp-content/uploads/2022/04/alicja-w-krainie-czarow013-1024x683.jpg","date":"2023-05-11","description":"qweqwe","id":"7bb7f240-c8b5-4b6a-993a-90fcefc7e42e"},{"title":"rew","image":"https://www.argentum-event.pl/wp-content/uploads/2022/04/alicja-w-krainie-czarow013-1024x683.jpg","date":"2023-05-17","description":"asda","id":"92b382f4-bdea-4693-bb45-cb1fcb899fb3"},{"title":"asd","image":"https://www.argentum-event.pl/wp-content/uploads/2022/04/alicja-w-krainie-czarow013-1024x683.jpg","date":"2023-05-24","description":"asd","id":"82a0363d-899e-4e95-ba2c-bd89f60a8f80"},{"title":"asd","image":"https://www.argentum-event.pl/wp-content/uploads/2022/04/alicja-w-krainie-czarow013-1024x683.jpg","date":"2023-05-31","description":"asda","id":"731002da-8b4d-4165-87e8-d1e8539c09ac"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
