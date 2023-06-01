@@ -22,6 +22,10 @@ const EventDetail = () => {
     }
   };
 
+  const test = () => {
+    console.log("asd");
+  };
+
   return (
     <section>
       <img src={event.image} alt={event.title} />
