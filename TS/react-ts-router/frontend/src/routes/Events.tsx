@@ -17,7 +17,11 @@ const Events = () => {
   const events = data.events;
 
   return (
+<<<<<<< HEAD
     <section className="flex flex-col gap-5">
+=======
+    <section className="flex gap-5 flex-col">
+>>>>>>> 1dc63d5b43494801d70be7de3893820b465ad729
       {events.map((event) => (
         <EventItem key={event.id} {...event} />
       ))}

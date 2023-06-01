@@ -2,11 +2,19 @@ import { Link, Form } from "react-router-dom";
 
 import { Event } from "../routes/Events";
 
+<<<<<<< HEAD
 type EventProp = {
   event?: Event;
 };
 
 const EditForm = ({ event }: EventProp) => {
+=======
+type EventProps = {
+  event?: Event;
+};
+
+const EventForm = ({ event }: EventProps) => {
+>>>>>>> 1dc63d5b43494801d70be7de3893820b465ad729
   return (
     <Form method="post" className="flex flex-col gap-3">
       <div className="flex flex-col gap-2">
@@ -64,12 +72,20 @@ const EditForm = ({ event }: EventProp) => {
         />
       </div>
       <div className="mt-4 flex gap-2 justify-end">
+<<<<<<< HEAD
         <button className="w-20 py-1 rounded-md bg-neutral-700 shadow-md hover:bg-neutral-400 transition">
+=======
+        <button className="w-20 py-1 rounded-md bg-neutral-700 shadow-md hover:bg-gray-500 transition">
+>>>>>>> 1dc63d5b43494801d70be7de3893820b465ad729
           <Link to="..">Cancel</Link>
         </button>
         <button
           type="submit"
+<<<<<<< HEAD
           className="w-20 py-1 rounded-md bg-gray-500  shadow-md disabled:cursor-not-allowed hover:bg-yellow-300 hover:text-black transition"
+=======
+          className="w-20 py-1 rounded-md bg-gray-500 shadow-md hover:bg-yellow-300 hover:text-black transition"
+>>>>>>> 1dc63d5b43494801d70be7de3893820b465ad729
         >
           Save
         </button>
@@ -78,4 +94,4 @@ const EditForm = ({ event }: EventProp) => {
   );
 };
 
-export default EditForm;
+export default EventForm;
