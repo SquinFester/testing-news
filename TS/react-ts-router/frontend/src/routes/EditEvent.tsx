@@ -1,7 +1,7 @@
 import { useRouteLoaderData } from "react-router-dom";
 
 import { FetchedEvent } from "./EventDetail";
-import EditForm from "../components/EditForm";
+import EventForm from "../components/EventForm";
 
 const EditEvent = () => {
   const data = useRouteLoaderData("event-detail") as FetchedEvent;
@@ -9,7 +9,7 @@ const EditEvent = () => {
 
   return (
     <div>
-      <EditForm event={event} />
+      <EventForm event={event} />
     </div>
   );
 };

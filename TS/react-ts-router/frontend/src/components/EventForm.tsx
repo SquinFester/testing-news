@@ -6,7 +6,7 @@ type EventProps = {
   event?: Event;
 };
 
-const EditForm = ({ event }: EventProps) => {
+const EventForm = ({ event }: EventProps) => {
   return (
     <Form method="post" className="flex flex-col gap-3">
       <div className="flex flex-col gap-2">
@@ -78,4 +78,4 @@ const EditForm = ({ event }: EventProps) => {
   );
 };
 
-export default EditForm;
+export default EventForm;
