@@ -22,16 +22,7 @@ const EventDetail = () => {
     }
   };
 
-  const test = () => {
-    console.log("asd");
-  };
-
   return (
-<<<<<<< HEAD
-    <div>
-      EventDetail {event.id}--- <Link to={"edit"}>Edit</Link>
-    </div>
-=======
     <section>
       <img src={event.image} alt={event.title} />
       <h1>{event.title}</h1>
@@ -42,7 +33,6 @@ const EventDetail = () => {
         <button onClick={startDeleteHandler}>Delete</button>
       </menu>
     </section>
->>>>>>> 1dc63d5b43494801d70be7de3893820b465ad729
   );
 };
 

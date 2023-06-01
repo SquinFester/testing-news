@@ -1,22 +1,38 @@
-import { Link, Form } from "react-router-dom";
+import {
+  Link,
+  Form,
+  useNavigation,
+  useActionData,
+  json,
+  redirect,
+} from "react-router-dom";
 
 import { Event } from "../routes/Events";
 
-<<<<<<< HEAD
-type EventProp = {
-  event?: Event;
-};
-
-const EditForm = ({ event }: EventProp) => {
-=======
 type EventProps = {
   event?: Event;
+  method?: "post" | "patch";
 };
 
-const EventForm = ({ event }: EventProps) => {
->>>>>>> 1dc63d5b43494801d70be7de3893820b465ad729
+type Error = {
+  errors: string;
+};
+
+const EventForm = ({ method, event }: EventProps) => {
+  const data = useActionData() as Error;
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === "submitting";
+
   return (
-    <Form method="post" className="flex flex-col gap-3">
+    <Form method={method} className="flex flex-col gap-3">
+      {data && data.errors && (
+        <ul>
+          {Object.values(data.errors).map((err) => (
+            <li key={err}>{err}</li>
+          ))}
+        </ul>
+      )}
       <div className="flex flex-col gap-2">
         <label htmlFor="title" className="text-xl font-medium">
           Title
@@ -72,20 +88,16 @@ const EventForm = ({ event }: EventProps) => {
         />
       </div>
       <div className="mt-4 flex gap-2 justify-end">
-<<<<<<< HEAD
-        <button className="w-20 py-1 rounded-md bg-neutral-700 shadow-md hover:bg-neutral-400 transition">
-=======
-        <button className="w-20 py-1 rounded-md bg-neutral-700 shadow-md hover:bg-gray-500 transition">
->>>>>>> 1dc63d5b43494801d70be7de3893820b465ad729
+        <button
+          className="w-20 py-1 rounded-md bg-neutral-700 shadow-md hover:bg-gray-500 transition"
+          disabled={isSubmitting}
+        >
           <Link to="..">Cancel</Link>
         </button>
         <button
           type="submit"
-<<<<<<< HEAD
-          className="w-20 py-1 rounded-md bg-gray-500  shadow-md disabled:cursor-not-allowed hover:bg-yellow-300 hover:text-black transition"
-=======
           className="w-20 py-1 rounded-md bg-gray-500 shadow-md hover:bg-yellow-300 hover:text-black transition"
->>>>>>> 1dc63d5b43494801d70be7de3893820b465ad729
+          disabled={isSubmitting}
         >
           Save
         </button>
@@ -95,3 +107,35 @@ const EventForm = ({ event }: EventProps) => {
 };
 
 export default EventForm;
+
+export const action = async ({ request, params }: any) => {
+  const method = request.method;
+  const data = await request.formData();
+  const eventData = {
+    title: data.get("title"),
+    image: data.get("image"),
+    date: data.get("date"),
+    description: data.get("description"),
+  };
+
+  const id = params.eventID ? params.eventID : "";
+  let url = `http://localhost:8080/events/${id}`;
+
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(eventData),
+  });
+
+  if (response.status === 422) {
+    return response;
+  }
+
+  if (!response.ok) {
+    throw json({ message: "Could not save event" }, { status: 500 });
+  }
+
+  return redirect("/events");
+};
