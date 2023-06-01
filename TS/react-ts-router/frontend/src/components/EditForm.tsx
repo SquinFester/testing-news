@@ -1,27 +1,14 @@
-import { Link, useRouteLoaderData } from "react-router-dom";
+import { Link, Form } from "react-router-dom";
 
 import { Event } from "../routes/Events";
-import { FetchedEvent } from "../routes/EventDetail";
-import { useForm } from "react-hook-form";
 
-const EditForm = () => {
-  const data = useRouteLoaderData("event-detail") as FetchedEvent;
-  const event = data.event;
+type EventProps = {
+  event?: Event;
+};
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Event>({
-    mode: "onBlur",
-  });
-
-  const onSubmit = handleSubmit((e) => {
-    console.log(e);
-  });
-
+const EditForm = ({ event }: EventProps) => {
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-3">
+    <Form method="post" className="flex flex-col gap-3">
       <div className="flex flex-col gap-2">
         <label htmlFor="title" className="text-xl font-medium">
           Title
@@ -29,11 +16,11 @@ const EditForm = () => {
         <input
           type="text"
           id="title"
+          name="title"
           className="text-black rounded-lg p-1"
-          defaultValue={event.title}
-          {...register("title", { required: true })}
+          defaultValue={event?.title}
+          required={true}
         />
-        {errors.title && <span>Title is required</span>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -43,11 +30,11 @@ const EditForm = () => {
         <input
           type="url"
           id="image"
+          name="image"
           className="text-black rounded-lg p-1"
-          defaultValue={event.image}
-          {...register("image", { required: true })}
+          defaultValue={event?.image}
+          required={true}
         />
-        {errors.image && <span>Image is required</span>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -57,11 +44,11 @@ const EditForm = () => {
         <input
           type="date"
           id="date"
+          name="date"
           className="text-black rounded-lg p-1"
-          defaultValue={event.date}
-          {...register("date", { required: true })}
+          defaultValue={event?.date}
+          required={true}
         />
-        {errors.date && <span>Date is required</span>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -70,24 +57,24 @@ const EditForm = () => {
         </label>
         <textarea
           id="description"
+          name="description"
           className="text-black rounded-lg p-1"
-          defaultValue={event.description}
-          {...register("description", { required: true })}
+          defaultValue={event?.description}
+          required={true}
         />
-        {errors.title && <span>Description is required</span>}
       </div>
       <div className="mt-4 flex gap-2 justify-end">
-        <button className="w-20 py-1 rounded-md bg-neutral-700 shadow-md">
+        <button className="w-20 py-1 rounded-md bg-neutral-700 shadow-md hover:bg-gray-500 transition">
           <Link to="..">Cancel</Link>
         </button>
         <button
           type="submit"
-          className="w-20 py-1 rounded-md bg-gray-500  shadow-md"
+          className="w-20 py-1 rounded-md bg-gray-500 shadow-md hover:bg-yellow-300 hover:text-black transition"
         >
           Save
         </button>
       </div>
-    </form>
+    </Form>
   );
 };
 

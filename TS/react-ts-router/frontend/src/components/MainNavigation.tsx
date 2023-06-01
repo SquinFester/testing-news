@@ -31,7 +31,7 @@ const MainNavigation = () => {
               <NavLink
                 to={page.path}
                 className={({ isActive }) =>
-                  isActive ? "text-yellow-200 underline" : navLink
+                  isActive ? "text-yellow-200 " : navLink
                 }
               >
                 {page.name}
