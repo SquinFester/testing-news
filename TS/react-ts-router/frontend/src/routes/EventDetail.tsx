@@ -22,6 +22,10 @@ const EventDetail = () => {
     }
   };
 
+  const test = () => {
+    console.log("asd");
+  };
+
   return (
 <<<<<<< HEAD
     <div>
