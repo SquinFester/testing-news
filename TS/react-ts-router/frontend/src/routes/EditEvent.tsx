@@ -8,9 +8,9 @@ const EditEvent = () => {
   const event = data.event;
 
   return (
-    <div>
+    <section>
       <EventForm event={event} />
-    </div>
+    </section>
   );
 };
 
