@@ -1,5 +1,11 @@
+import EventForm from "../components/EventForm";
+
 const NewEvent = () => {
-  return <div>NewEvent</div>;
+  return (
+    <>
+      <EventForm />
+    </>
+  );
 };
 
 export default NewEvent;
