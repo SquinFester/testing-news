@@ -1,30 +1,32 @@
-import { Link } from "react-router-dom";
-
+import { Link, useSubmit } from "react-router-dom";
 import { Event } from "../routes/Events";
 
-type EventsProps = {
-  events: Event[];
+type EventPrompt = {
+  event: Event;
 };
 
-const EventItem = ({ events }: EventsProps) => {
-  const renderEvents = () =>
-    events.map((event) => (
-      <Link to={event.id} key={event.id}>
-        <div className="flex p-1 justify-between hover:bg-neutral-500 rounded-xl hover:scale-105 transition shadow-md bg-neutral-600">
-          <img
-            src={event.image}
-            alt={event.title}
-            className="w-1/2 rounded-xl rounded-r-none"
-          />
-          <div className="text-right pr-2">
-            <h1 className="text-xl  font-medium">{event.title}</h1>
-            <p className="italic">{event.date}</p>
-          </div>
-        </div>
-      </Link>
-    ));
+const EventItem = ({ event }: EventPrompt) => {
+  const submit = useSubmit();
 
-  return <section className="flex flex-col gap-5">{renderEvents()}</section>;
+  const startDeleteHandler = () => {
+    const proceed = window.confirm("Are you sure?");
+    if (proceed) {
+      submit(null, { method: "delete" });
+    }
+  };
+
+  return (
+    <>
+      <img src={event.image} alt={event.title} />
+      <h1>{event.title}</h1>
+      <time>{event.date}</time>
+      <p>{event.description}</p>
+      <menu>
+        <Link to={"edit"}>Edit</Link>
+        <button onClick={startDeleteHandler}>Delete</button>
+      </menu>
+    </>
+  );
 };
 
 export default EventItem;

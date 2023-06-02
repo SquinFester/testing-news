@@ -1,45 +1,51 @@
-import {
-  Link,
-  redirect,
-  useRouteLoaderData,
-  useSubmit,
-} from "react-router-dom";
-import { Event } from "./Events";
+import { Suspense } from "react";
+
+import { redirect, defer, Await, useRouteLoaderData } from "react-router-dom";
+import { Event, loadEvents } from "./Events";
+import EventList from "../components/EventList";
+import EventItem from "../components/EventItem";
 
 export type FetchedEvent = {
   event: Event;
+  eventsList: Event[];
 };
 
 const EventDetail = () => {
-  const submit = useSubmit();
-  const data = useRouteLoaderData("event-detail") as FetchedEvent;
-  const event = data.event;
-
-  const startDeleteHandler = () => {
-    const proceed = window.confirm("Are you sure?");
-    if (proceed) {
-      submit(null, { method: "delete" });
-    }
-  };
+  const { event, eventsList } = useRouteLoaderData(
+    "event-detail"
+  ) as FetchedEvent;
 
   return (
-    <section>
-      <img src={event.image} alt={event.title} />
-      <h1>{event.title}</h1>
-      <time>{event.date}</time>
-      <p>{event.description}</p>
-      <menu>
-        <Link to={"edit"}>Edit</Link>
-        <button onClick={startDeleteHandler}>Delete</button>
-      </menu>
-    </section>
+    <>
+      <Suspense fallback={<p>Loading..</p>}>
+        <Await resolve={event}>
+          {(loadedEvent) => <EventItem event={loadedEvent} />}
+        </Await>
+      </Suspense>
+      <Suspense fallback={<p>Loading..</p>}>
+        <Await resolve={eventsList}>
+          {(loadedEvents) => <EventList events={loadedEvents} />}
+        </Await>
+      </Suspense>
+    </>
   );
 };
 
 export default EventDetail;
 
+const loadEvent = async (id: string) => {
+  const url = `http://localhost:8080/events/${id}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.event;
+};
+
 export const loader = async ({ params }: any) => {
-  return await fetch(`http://localhost:8080/events/${params.eventID}`);
+  const id = params.eventID;
+  return defer({
+    event: await loadEvent(id),
+    eventsList: loadEvents(),
+  });
 };
 
 export const action = async ({ request, params }: any) => {

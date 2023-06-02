@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { defer, useLoaderData, Await } from "react-router-dom";
-import EventItem from "../components/EventItem";
+import EventList from "../components/EventList";
 
 export type Event = {
   id: string;
@@ -19,7 +19,7 @@ const Events = () => {
   return (
     <Suspense fallback={<p>loading</p>}>
       <Await resolve={events}>
-        {(loadEvents) => <EventItem events={loadEvents} />}
+        {(loadEvents) => <EventList events={loadEvents} />}
       </Await>
     </Suspense>
   );
@@ -27,12 +27,12 @@ const Events = () => {
 
 export default Events;
 
-const loadEvetns = async () => {
-  const response = await fetch("http://localhost:8080/events");
+export const loadEvents = async () => {
+  const response = await fetch("http://localhost:8080/events/");
   const data = await response.json();
   return data.events;
 };
 
 export const loader = async () => {
-  return defer({ events: loadEvetns() });
+  return defer({ events: loadEvents() });
 };
