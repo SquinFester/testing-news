@@ -1,4 +1,5 @@
-import { useLoaderData } from "react-router-dom";
+import { Suspense } from "react";
+import { defer, useLoaderData, Await } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
 export type Event = {
@@ -13,20 +14,25 @@ type FetchedData = {
 };
 
 const Events = () => {
-  const data = useLoaderData() as FetchedData;
-  const events = data.events;
+  const { events } = useLoaderData() as FetchedData;
 
   return (
-    <section className="flex gap-5 flex-col">
-      {events.map((event) => (
-        <EventItem key={event.id} {...event} />
-      ))}
-    </section>
+    <Suspense fallback={<p>loading</p>}>
+      <Await resolve={events}>
+        {(loadEvents) => <EventItem events={loadEvents} />}
+      </Await>
+    </Suspense>
   );
 };
 
 export default Events;
 
+const loadEvetns = async () => {
+  const response = await fetch("http://localhost:8080/events");
+  const data = await response.json();
+  return data.events;
+};
+
 export const loader = async () => {
-  return await fetch("http://localhost:8080/events");
+  return defer({ events: loadEvetns() });
 };

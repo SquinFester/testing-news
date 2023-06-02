@@ -11,6 +11,7 @@ import NewEvent from "./routes/NewEvent";
 import EditEvent from "./routes/EditEvent";
 import Error from "./routes/Error";
 import { action } from "./components/EventForm";
+import NewsLetter, { action as newsLetterAction } from "./routes/NewsLetter";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
             action: action,
           },
         ],
+      },
+      {
+        path: "newsletter",
+        element: <NewsLetter />,
+        action: newsLetterAction,
       },
     ],
   },
