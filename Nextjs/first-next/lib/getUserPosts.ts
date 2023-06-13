@@ -4,7 +4,7 @@ export default async function getUserPosts(userId: string) {
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch post");
+    return undefined;
   }
 
   return res.json();
