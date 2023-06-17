@@ -1,5 +1,7 @@
+import { WEATHER_KEY } from "../../api-key";
+
 export default async function getCoordinates(city: string = "") {
-  const api = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=912af0f7d9b6b242869ebd84732b8cd9`;
+  const api = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${WEATHER_KEY}`;
 
   //   const api = `https://jsonplaceholder.typicode.com/posts/${city}`;
 
@@ -11,7 +13,7 @@ export default async function getCoordinates(city: string = "") {
 }
 
 export const getCitiesByCoord = async (lat: string, lon: string) => {
-  const api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=912af0f7d9b6b242869ebd84732b8cd9`;
+  const api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${WEATHER_KEY}`;
 
   const res = await fetch(api);
   if (!res.ok) throw new Error("Error fetching");
