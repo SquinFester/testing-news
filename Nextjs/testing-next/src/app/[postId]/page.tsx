@@ -9,8 +9,6 @@ type Props = {
 export default async function PostDetail({ params: { postId } }: Props) {
   const post: Post = await getPosts(postId);
 
-  console.log(post);
-
   return (
     <div>
       <h1>{post.title}</h1>
@@ -18,3 +16,11 @@ export default async function PostDetail({ params: { postId } }: Props) {
     </div>
   );
 }
+
+export const generateStaticParams = async () => {
+  const posts: Post[] = await getPosts();
+
+  if (!posts) throw new Error("No posts found");
+
+  return posts.map((post) => ({ postId: post.id.toString() }));
+};
