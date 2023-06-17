@@ -1,7 +1,8 @@
 "use client";
 
 import WeatherCard from "@/components/WeatherCard";
-import getCoordinates from "@/utility/getCoordinates";
+import getCoordinates, { getCitiesByCoord } from "@/utility/getCoordinates";
+import { log } from "console";
 import { FormEvent, useState, useEffect, Suspense } from "react";
 
 type Cord = {
@@ -10,7 +11,7 @@ type Cord = {
 };
 
 export default function Home() {
-  const [cityInputed, setCityInputed] = useState<string>("Leszno");
+  const [cityInputed, setCityInputed] = useState<string>("");
   const [cityCords, setCityCords] = useState<Cord>({ lat: "", lon: "" });
 
   const getSpecificCord = async (place: string) => {
@@ -28,7 +29,23 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getSpecificCord(cityInputed);
+    const getCity = async (lat: string, lon: string) => {
+      const res = await getCitiesByCoord(lat, lon);
+      const data: Coords[] = await res;
+      setCityInputed(() => data[0].name);
+    };
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      const lat = `${position.coords.latitude}`;
+      const lon = `${position.coords.longitude}`;
+
+      setCityCords(() => ({
+        lat,
+        lon,
+      }));
+
+      getCity(lat, lon);
+    });
   }, []);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

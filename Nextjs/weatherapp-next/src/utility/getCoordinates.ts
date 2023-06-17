@@ -9,3 +9,12 @@ export default async function getCoordinates(city: string = "") {
 
   return res.json();
 }
+
+export const getCitiesByCoord = async (lat: string, lon: string) => {
+  const api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=912af0f7d9b6b242869ebd84732b8cd9`;
+
+  const res = await fetch(api);
+  if (!res.ok) throw new Error("Error fetching");
+
+  return res.json();
+};
