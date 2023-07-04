@@ -1,8 +1,5 @@
 {
   "expo": {
-    "experiments": {
-      "tsconfigPaths": true
-    },
     "name": "first-step",
     "slug": "first-step",
     "version": "1.0.0",
@@ -14,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
