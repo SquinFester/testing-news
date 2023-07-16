@@ -34,7 +34,7 @@ const HomeScreen = () => {
         flex: 1,
       }}
     >
-      <StatusBar backgroundColor="#000" />
+      <StatusBar barStyle={"light-content"} />
       <View
         style={{
           paddingBottom: 15,
