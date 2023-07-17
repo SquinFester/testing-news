@@ -17,7 +17,6 @@ export const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
     setIsLoading(true);
 
     try {
-      throw new Error();
       await signIn("google");
     } catch (error) {
       toast({
