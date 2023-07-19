@@ -43,7 +43,7 @@ const Layout = async ({
         },
       });
 
-  const isSubscibed = !!subscription;
+  const isSubscribed = !!subscription;
 
   if (!subreddit) return notFound();
 
@@ -93,6 +93,7 @@ const Layout = async ({
                 <SubscribeLeaveToggle
                   subredditId={subreddit.id}
                   subredditName={subreddit.name}
+                  isSubscribed={isSubscribed}
                 />
               ) : null}
             </dl>

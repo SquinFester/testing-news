@@ -12,15 +12,16 @@ import { useRouter } from "next/navigation";
 export const SubscribeLeaveToggle = ({
   subredditId,
   subredditName,
+  isSubscribed,
 }: {
   subredditId: string;
   subredditName: string;
+  isSubscribed: boolean;
 }) => {
-  const isSubscribed = false;
   const { loginToast } = useCustomTost();
   const router = useRouter();
 
-  const { mutate } = useMutation({
+  const { mutate: subscribe, isLoading: isLoadingSub } = useMutation({
     mutationFn: async () => {
       const payload: SubscribeToSubredditPayload = {
         subredditId,
@@ -52,9 +53,53 @@ export const SubscribeLeaveToggle = ({
     },
   });
 
+  const { mutate: unsubscribe, isLoading: isLoadingUnSub } = useMutation({
+    mutationFn: async () => {
+      const payload: SubscribeToSubredditPayload = {
+        subredditId,
+      };
+      const { data } = await axios.post("/api/subreddit/unsubscribe", payload);
+      return data as string;
+    },
+    onError: (err) => {
+      if (err instanceof AxiosError) {
+        if (err.response?.status == 401) {
+          return loginToast();
+        }
+      }
+
+      return toast({
+        title: "There was a problem",
+        description: "Something went wrong, please try again",
+        variant: "destructive",
+      });
+    },
+    onSuccess: () => {
+      startTransition(() => {
+        router.refresh();
+      });
+      return toast({
+        title: "Unsubscribed",
+        description: `You are now unsubscribed from r/${subredditName}`,
+      });
+    },
+  });
+
   return isSubscribed ? (
-    <Button className="w-full mt-1 mb-4">Leave community</Button>
+    <Button
+      className="w-full mt-1 mb-4"
+      onClick={() => unsubscribe()}
+      isLoading={isLoadingUnSub}
+    >
+      Leave community
+    </Button>
   ) : (
-    <Button className="w-full mt-1 mb-4">Join to post</Button>
+    <Button
+      className="w-full mt-1 mb-4"
+      onClick={() => subscribe()}
+      isLoading={isLoadingSub}
+    >
+      Join to post
+    </Button>
   );
 };
