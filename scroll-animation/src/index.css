@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.test1 {
+  min-height: 50vh;
+  background-color: brown;
+}
